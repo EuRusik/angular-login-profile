@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+body {
+    background: #f1f8f7;
+}
+
+.label-hr {
+    width: 100%;
+    margin: 25px 0 25px 0;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.label-hr:after {
+    content: '';
+    width: 100%;
+    border-bottom: solid 2px #d8e5e3;
+    position: relative;
+    left: 0;
+    top: -13px;
+    z-index: 1;
+}
+
+.label-hr-text {
+    background-color: #f1f8f7;
+    width: auto;
+    display: inline-block;
+    z-index: 3;
+    padding: 0 40px 0 20px;
+    color: #3e7672;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    margin: 0;
+    float: left;
+    left: -5px;
+}
+
+label.control-label {
+    font-family: 'Raleway', sans-serif;
+    color: #3e7672;
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+    width: 250px;
+}
+
+p.form-control, input.form-control {
+    background: #d9eeef;
+    border: 1px solid #bde3e4;
+    min-height: 50px;
+    color: #215a59;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    word-wrap: break-word;
+}
+
+input.form-control{
+    background: white;
+}
+
+span.edit-text, .save{
+    float: right;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #60a9da;
+    cursor: pointer;
+}
+
+.save{
+    float: left;
+    margin-top: 5px;
+}
+
+.margin-top-md {
+    margin-top: 50px;
+}
+
+.add-btn{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    background: #5097d1;
+    border: none;
+    padding: 10px 20px 10px 20px;
+}
+
+.hide{
+    display: none;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+    color: gray;
+}
+
+.add-address{
+    background: #d9eeef;
+    padding: 25px 15px 25px;
+    border: 1px solid #bde3e4;
+    border-radius: 6px;
+}
+
+.btn.add-btn.update{
+    color: white;
+    background: #4CAF50;
+    padding: 7px;
+    margin-right: 5px;
+}
+
+.btn.add-btn.delete{
+    color: white;
+    background: #F44336;
+    padding: 7px;
+    margin-right: 5px;
+}
+
+.btn.add-btn.cancel{
+    color: white;
+    background: #00BCD4;
+    padding: 7px;
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .add-btn{
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .add-btn.update, .add-btn.delete, .add-btn.cancel{
+        width: auto;
+    }
+
+    .col-md-12.column.margin-top-md{
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0;
+    }
+}

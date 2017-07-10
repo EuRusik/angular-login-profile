@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 column margin-top-md">
+            <div class="col-md-9 col-md-offset-1 column">
+                <form role="form" [formGroup]="profileForm">
+                    <div class="label-hr clearfix">
+                        <div class="label-hr-text">Persoanl Info</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="control-label">Name</label>
+                        <a (click)="onEdit(profileService.USERNAME)"><span class="edit-text text-uppercase"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span></a>
+                        <input type="text" class="form-control" name="username" formControlName="username" [(ngModel)]="profile.name" *ngIf="hide == profileService.USERNAME" required>
+                        <p class="form-control" id="name" [ngClass]="{hide: hide == profileService.USERNAME}">{{profile.name}}</p>
+                        <a (click)="onSave()"><span class="save text-uppercase"
+                                                    [ngClass]="{disabled: !profileForm.get('username').valid && profileForm.get('username').touched}"
+                                                    *ngIf="hide == profileService.USERNAME"><i class="fa fa-check" aria-hidden="true"></i> Save</span></a>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email" class="control-label">Email</label>
+                        <a (click)="onEdit(profileService.EMAIL)"><span class="edit-text text-uppercase"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span></a>
+                        <input type="text" class="form-control" name="email" formControlName="email" [(ngModel)]="profile.email" *ngIf="hide == profileService.EMAIL" email>
+                        <p class="form-control" id="email" [ngClass]="{hide: hide == profileService.EMAIL}">{{profile.email}}</p>
+                        <a (click)="onSave()"><span class="save text-uppercase" [ngClass]="{disabled: !profileForm.get('email').valid && profileForm.get('email').touched}"
+                                                    *ngIf="hide == profileService.EMAIL"><i class="fa fa-check" aria-hidden="true"></i> Save</span></a>
+                    </div>
+                    <!-- address form -->
+                    <div class="label-hr clearfix">
+                        <div class="label-hr-text">Address Book</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-6" *ngFor="let address of profile.address; let i = index">
+                                <label class="control-label">{{address.title}}</label>
+                                <a (click)="onEdit(profileService.ADDRESS, i)"><span class="edit-text text-uppercase"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span></a>
+                                <p class="form-control address" id="address">{{address.address}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- reactive address form -->
+                    <div class="form-group col-md-12" formArrayName="addresses">
+                        <div *ngFor="let adressControl of profileForm.get('addresses').controls; let i = index" [formGroupName]="i">
+                          <div class="form-group add-address" *ngIf="hide == profileService.ADDRESS && i == numIndex && showHideForm">
+                              <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Nickname for Address</label>
+                                    <input type="text" class="form-control" name="address-title" formControlName="title" maxlength="50" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Address data</label>
+                                    <textarea type="text" class="form-control" formControlName="address"  cols="10" rows="5" maxlength="150" required></textarea>
+                                </div>
+                            </div>
+                              <br>
+                              <button class="btn btn-primary add-btn cancel text-uppercase pull-right"  type="button" (click)="showHideForm = false" *ngIf="editMode">Cancel</button>
+                              <button class="btn btn-primary add-btn update text-uppercase pull-right" type="button" (click)="updateAddress(i)" *ngIf="editMode" [disabled]="!profileForm.get('addresses').controls[i].valid">Update</button>
+                              <button class="btn btn-primary add-btn delete text-uppercase" type="button" (click)="deleteAddress(i)" *ngIf="editMode">Delete</button>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-primary add-btn text-uppercase" type="button" (click)="onAddAddress(profileService.ADDRESS)" [disabled]="disabledAddAddress">Add new address</button>
+                        <button class="btn btn-primary add-btn text-uppercase pull-right" type="button" (click)="onSaveAddress()"
+                                *ngIf="enabledSaveAddress" [disabled]="!profileForm.valid">Save new address</button>
+                    </div>
+                    <!-- end reactive address form -->
+                    <!-- phone form -->
+                    <div class="label-hr clearfix">
+                        <div class="label-hr-text">Contact Info</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-6" *ngFor="let phone of profile.phone; let i = index">
+                                <label class="control-label">{{phone.title}}</label>
+                                <a (click)="onEdit(profileService.PHONE, i)"><span class="edit-text text-uppercase"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span></a>
+                                <p class="form-control address">{{phone.phone}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- reactive phone form -->
+                    <div class="form-group col-md-12" formArrayName="phones">
+                        <div *ngFor="let adressControl of profileForm.get('phones').controls; let i = index" [formGroupName]="i">
+                            <div class="form-group add-address" *ngIf="hide == profileService.PHONE && i == numIndex && showHideForm">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Nickname for Phone</label>
+                                        <input type="text" class="form-control" name="phone-title" formControlName="title" maxlength="50" required>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Phone number</label>
+                                        <input type="text" class="form-control" formControlName="phone" maxlength="20" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$" placeholder="pattern regex 123-123-1234" required>
+                                    </div>
+                                </div>
+                                <br>
+                                <button class="btn btn-primary add-btn cancel text-uppercase pull-right"  type="button" (click)="showHideForm = false" *ngIf="editMode">Cancel</button>
+                                <button class="btn btn-primary add-btn update text-uppercase pull-right" type="button" (click)="updatePhone(i)" *ngIf="editMode" [disabled]="!profileForm.get('phones').controls[i].valid">Update</button>
+                                <button class="btn btn-primary add-btn delete text-uppercase" type="button" (click)="deletePhone(i)" *ngIf="editMode">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-primary add-btn text-uppercase" type="button" (click)="onAddPhone(profileService.PHONE)" [disabled]="disabledAddPhone">Add new contact</button>
+                        <button class="btn btn-primary add-btn text-uppercase pull-right" type="button" (click)="onSavePhone()"
+                                *ngIf="enabledSavePhone" [disabled]="!profileForm.valid">Save new contact</button>
+                    </div>
+                    <div style="margin-bottom: 150px; display: inline-block"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

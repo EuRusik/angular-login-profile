@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a routerLink="/profile">Sign In</a></li>
+            <li><a href="#">Create an Account</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row clearfix singin">
+        <div class="col-md-12 column">
+            <div class="col-md-8 col-md-offset-2 column">
+                <form role="form">
+                    <div class="form-group col-md-6">
+                        <label for="email" class="control-label">Email</label>
+                        <input type="email" value='' class="form-control" id="email" placeholder="" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password" class="control-label">Password</label>
+                        <input type="password" value='' class="form-control" id="password" placeholder="" required email>
+                    </div>
+                    <div class="form-group checkbox col-sm-10 col-md-2">
+                        <label class="remember-me"><input type="checkbox" value="">Remember Me</label>
+                    </div>
+                    <div class="form-group col-xs-6 col-sm-6 col-md-offset-0 col-md-4">
+                        <button class="btn btn-default pull-right text-uppercase green" type="button">Cancel</button>
+                    </div>
+                    <div class="form-group col-xs-6 col-sm-6 col-md-4">
+                        <button class="btn btn-success text-uppercase light-green" type="submit">Sing In</button>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="or text-uppercase">
+                            <div class="text-or">OR</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <button type="button" class="btn btn-default facebook text-uppercase center-block"><i class="fa fa-facebook facebook-logo" aria-hidden="true"></i>
+                            Login Using Facebook</button>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="forgot-pass-text">Forgot Your Password? <a href="#" class="link-underlining link-lil-strong">Click here</a></p>
+                        <p class="not-have-account-text">Don't have an account?  <a href="#" class="link-underlining link-lil-strong">Create an Account</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
